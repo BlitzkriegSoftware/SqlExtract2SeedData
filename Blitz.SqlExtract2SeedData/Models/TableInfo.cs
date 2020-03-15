@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Blitz.SqlExtract2SeedData.Models
+﻿namespace Blitz.SqlExtract2SeedData.Models
 {
     /// <summary>
     /// Table Info
@@ -10,7 +6,7 @@ namespace Blitz.SqlExtract2SeedData.Models
     public class TableInfo
     {
         /// <summary>
-        /// Schema
+        /// Schema, with a default of <c>dbo</c>
         /// </summary>
         public string Schema { get; set; } = "dbo";
 
@@ -19,6 +15,10 @@ namespace Blitz.SqlExtract2SeedData.Models
         /// </summary>
         public string TableName { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Returns normalized table name and schema
+        /// </summary>
+        /// <returns>See above</returns>
         public override string ToString()
         {
             return $"[{this.Schema}].[{this.TableName}]";

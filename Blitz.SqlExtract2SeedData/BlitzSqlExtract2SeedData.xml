@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlitzSqlExtract2SeedData</name>
+    </assembly>
+    <members>
+        <member name="T:Blitz.SqlExtract2SeedData.Libs.AssembyInfoHelper">
+            <summary>
+            Helper: Assembly Info
+            <para>Translates the <c>CustomAttributeData</c> to a usable string value</para>
+            </summary>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.AssembyInfoHelper.TryParse(System.Reflection.CustomAttributeData,System.String@)">
+            <summary>
+            Try Parse a <c>System.Reflection.CustomAttributeData</c> into a string
+            </summary>
+            <param name="attribute">(this)</param>
+            <param name="s">Strng to parse into</param>
+            <returns>True if success</returns>
+        </member>
+        <member name="T:Blitz.SqlExtract2SeedData.Libs.SqlExtractor">
+            <summary>
+            SQL Extractor
+            </summary>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.ParseTableName(Blitz.SqlExtract2SeedData.Models.Options)">
+            <summary>
+            Parses and normalizes table name
+            </summary>
+            <param name="options">(options)</param>
+            <returns>Table and Schema</returns>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.HasIdentity(Blitz.SqlExtract2SeedData.Models.Options)">
+            <summary>
+            Does the table have an identity column
+            </summary>
+            <param name="options">(options)</param>
+            <returns>True if so</returns>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.HasIdentity(System.String,Blitz.SqlExtract2SeedData.Models.TableInfo)">
+            <summary>
+            Does the table have an identity column
+            </summary>
+            <param name="connectionString">connection string</param>
+            <param name="ti">TableInfo</param>
+            <returns>True if so</returns>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.Extract(Blitz.SqlExtract2SeedData.Models.Options)">
+            <summary>
+            The Extraction Engine
+            </summary>
+            <param name="options">(options)</param>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.FixQuote(System.String)">
+            <summary>
+            Fix embeeded quote in data
+            </summary>
+            <param name="s">input text</param>
+            <returns>output text</returns>
+        </member>
+        <member name="T:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata">
+            <summary>
+            Custom Metadata For All Blitzkireg Software Micro-Service
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.Copyright">
+            <summary>
+            Copyright
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.Company">
+            <summary>
+            Company
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.SemanticVersion">
+            <summary>
+            Semantic Version <para>See: semver.org</para>
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.FileVersion">
+            <summary>
+            File Version
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.Product">
+            <summary>
+            Product
+            </summary>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.PropertySet(System.String,System.String)">
+            <summary>
+            Property Set
+            </summary>
+            <param name="name">(sic)</param>
+            <param name="value">(sic)</param>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Models.BlitzAssemblyVersionMetadata.ToString">
+            <summary>
+            Version String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Blitz.SqlExtract2SeedData.Models.Options">
+            <summary>
+            Command line options
+            <para>See: https://github.com/commandlineparser/commandline</para>
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.Verbose">
+            <summary>
+            Verbose Output
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.ConnectionString">
+            <summary>
+            Json Configuration File Path
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.Table">
+            <summary>
+            SQL Table Name
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.OrderBy">
+            <summary>
+            SQL Order By
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.Where">
+            <summary>
+            SQL Order By
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.Top">
+            <summary>
+            SQL Order By
+            </summary>
+        </member>
+        <member name="T:Blitz.SqlExtract2SeedData.Models.TableInfo">
+            <summary>
+            Table Info
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.TableInfo.Schema">
+            <summary>
+            Schema, with a default of <c>dbo</c>
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.TableInfo.TableName">
+            <summary>
+            Table Name
+            </summary>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Models.TableInfo.ToString">
+            <summary>
+            Returns normalized table name and schema
+            </summary>
+            <returns>See above</returns>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Program.ProgramMetadata">
+            <summary>
+            Semantic Version, etc from Assembly Metadata
+            </summary>
+        </member>
+    </members>
+</doc>

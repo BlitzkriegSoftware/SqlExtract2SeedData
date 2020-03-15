@@ -18,13 +18,13 @@
     <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\code\blitz\SqlExtract2SeedData\Blitz.SqlExtract2SeedData\BlitzSqlExtract2SeedData.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="..\favicon_32x32_o7Z_icon.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
