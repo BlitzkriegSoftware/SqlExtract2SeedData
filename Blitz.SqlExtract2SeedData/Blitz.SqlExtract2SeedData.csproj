@@ -16,6 +16,8 @@
     <PackageTags>SqlExtract2SeedData</PackageTags>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
