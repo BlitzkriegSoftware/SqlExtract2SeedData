@@ -6,15 +6,15 @@
     <Copyright>Copyright © 2020 Blitzkrieg Software</Copyright>
     <Company>Blitzkrieg Software</Company>
     <Description>Sql Extract To Seed Data</Description>
-    <InformationalVersion>1.0.0</InformationalVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <InformationalVersion>1.1.0</InformationalVersion>
+    <FileVersion>1.1.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageIcon>favicon_32x32_o7Z_icon.ico</PackageIcon>
     <PackageIconUrl />
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/blitzkriegsoftware/SqlExtract2SeedData</RepositoryUrl>
     <PackageTags>SqlExtract2SeedData</PackageTags>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
     <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishReadyToRun>true</PublishReadyToRun>

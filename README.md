@@ -1,4 +1,4 @@
-# SqlExtract2SeedData
+# SqlExtract2SeedData #
 
 An update to a little utility to extract tables in SQL Server to SQL Files for Seed Data
 
@@ -6,7 +6,7 @@ An update to a little utility to extract tables in SQL Server to SQL Files for S
 
 ## Usage ##
 
-BlitzSqlExtract2SeedData 1.0.0
+BlitzSqlExtract2SeedData 1.1.0
 Copyright c 2020 Blitzkrieg Software
 
   -v, --verbose          Set output to verbose messages.
@@ -20,6 +20,8 @@ Copyright c 2020 Blitzkrieg Software
   -w, --where            (optional) Where  Clausein the form of "where (column1 = 3)"
 
   -n, --ntop             (optional) Top N Rows
+
+  -a, --ascsv            (optional) Emit CSV instead
 
   --help                 Display this help screen.
 
@@ -71,7 +73,16 @@ or
 BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]" -n 100
 ```
 
-## About ##
+## As CSV ##
+
+Using the flag `-a` will create a CSV file with TAB delimiters, instead of a seed data SQL Script.
+
+To open it in Excel or Open Office, use the file, open mechanism so that you will be given a chance to set the settings in the text import wizard:
+
+* Field Delimiter (Tab \t)
+* Row Delimiter (CRLF \r\n)
+
+# About Me #
 
 * Stuart Williams
 

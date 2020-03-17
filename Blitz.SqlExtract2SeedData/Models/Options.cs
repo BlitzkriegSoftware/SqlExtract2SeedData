@@ -45,5 +45,10 @@ namespace Blitz.SqlExtract2SeedData.Models
         [Option('n', "ntop", Required = false, HelpText = "(optional) Top N Rows")]
         public int Top { get; set; } = -1;
 
+        /// <summary>
+        /// Emit TSV Instead
+        /// </summary>
+        [Option('a', "ascsv", Required=false, HelpText ="Emit Tab Separated Values (.csv) Instead of Seed Data")]
+        public bool AsCsv { get; set; } = false;
     }
 }

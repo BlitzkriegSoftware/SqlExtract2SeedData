@@ -87,13 +87,16 @@ namespace Blitz.SqlExtract2SeedData.Libs
             var ti = ParseTableName(options);
             var isIdentity = HasIdentity(options.ConnectionString, ti);
 
-            if(options.Verbose)
+
+            if (options.Verbose)
             {
                 Console.WriteLine($"{ti.ToString()} has identity {isIdentity}");
             }
 
             var filename = $"{ti.Schema}-{ti.TableName}-SeedData.sql";
+            if (options.AsCsv) filename = Path.ChangeExtension(filename, "csv");
             filename = Path.Combine(Directory.GetCurrentDirectory(), filename);
+            if (File.Exists(filename)) File.Delete(filename);
 
             var sb = new StringBuilder();
 
@@ -126,60 +129,38 @@ namespace Blitz.SqlExtract2SeedData.Libs
                 Console.WriteLine($"SQL Query: {sql}");
             }
 
+            if (options.AsCsv)
+            {
+                isIdentity = false;
+            }
+
             var dt = SqlHelper.ExecuteSqlWithParametersToDataTable(options.ConnectionString, sql, null);
             if (SqlHelper.HasRows(dt))
             {
-                var clist = new StringBuilder();
-                clist.Append("( ");
-                foreach (DataColumn dc in dt.Columns)
-                {
-                    clist.Append($"[{dc.ColumnName}], ");
-                }
+                var columns = ColumnsList(dt, !options.AsCsv);
 
-                var columns = clist.ToString().Trim();
-                columns = columns[0..^1];
-                columns += " )";
-
-                if (File.Exists(filename)) File.Delete(filename);
-
+                // New style using
                 using var file = new StreamWriter(filename);
+
                 if (isIdentity)
                 {
                     file.WriteLine($"SET IDENTITY_INSERT {ti.ToString()} ON");
                 }
 
+                if(options.AsCsv)
+                {
+                    file.WriteLine(columns);
+                }
+
                 foreach (DataRow dr in dt.Rows)
                 {
-                    file.Write($"INSERT INTO {ti.ToString()} {columns} VALUES (");
-
-                    for (int i = 0; i < dr.ItemArray.Length; i++)
+                    if(options.AsCsv)
                     {
-                        var tname = dr.ItemArray[i].GetType().Name;
-                        switch (tname)
-                        {
-                            case "String":
-                            case "System.String":
-                                file.Write("'");
-                                file.Write(FixQuote(dr.ItemArray[i].ToString()));
-                                file.Write("'");
-                                if (i < (dr.ItemArray.Length - 1)) file.Write(", ");
-                                break;
-
-                            case "Boolean":
-                            case "System.Boolean":
-                                var fl = Boolean.Parse(dr.ItemArray[i].ToString());
-                                int val = (fl) ? 1 : 0;
-                                file.Write(val);
-                                break;
-
-                            default:
-                                file.Write(dr.ItemArray[i]);
-                                if (i < (dr.ItemArray.Length - 1)) file.Write(", ");
-                                break;
-                        }
+                        WriteRowCsv(file, dr);
+                    } else
+                    {
+                        WriteRowSql(file, dr, columns, ti);
                     }
-
-                    file.WriteLine(");");
                 }
 
                 if (isIdentity)
@@ -196,14 +177,153 @@ namespace Blitz.SqlExtract2SeedData.Libs
         }
 
         /// <summary>
-        /// Fix embeeded quote in data
+        /// Creates a formatted column list
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="asSql"></param>
+        /// <returns></returns>
+        public static string ColumnsList(DataTable dt, bool asSql)
+        {
+            if (dt == null) throw new ArgumentNullException(nameof(dt), "There must be a datatable"); 
+
+            var clist = new StringBuilder();
+            if(asSql) clist.Append("( ");
+            
+            foreach (DataColumn dc in dt.Columns)
+            {
+                if(asSql)
+                {
+                    clist.Append("[");
+                }
+
+                var name = dc.ColumnName;
+                if(!asSql)
+                {
+                    name = name.Replace(' ', '_');
+                }
+
+                clist.Append($"{name}");
+                
+                if(asSql)
+                {
+                    clist.Append("],"); 
+                    clist.Append(" ");
+                } else
+                {
+                    clist.Append("\t");
+                }
+
+            }
+
+            var columns = clist.ToString().Trim();
+            columns = columns[0..^1];
+
+            if(asSql)
+            {
+                columns += " )";
+            }
+
+            return columns;
+                
+        }
+
+        /// <summary>
+        /// Write one row as CSV
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="dr"></param>
+        public static void WriteRowCsv(StreamWriter file, DataRow dr)
+        {
+            if (file == null) throw new ArgumentNullException(nameof(file), "File stream writer must not be null");
+            if (dr == null) throw new ArgumentNullException(nameof(dr), "DataRow must not be null");
+
+            for (int i = 0; i < dr.ItemArray.Length; i++)
+            {
+                var tname = dr.ItemArray[i].GetType().Name;
+                switch (tname)
+                {
+                    case "String":
+                    case "System.String":
+                        file.Write('"');
+                        file.Write(FixQuote(dr.ItemArray[i].ToString()));
+                        file.Write('"');
+                        break;
+
+                    default:
+                        file.Write(dr.ItemArray[i]);
+                        break;
+                }
+
+                if (i < (dr.ItemArray.Length - 1)) file.Write("\t");
+            }
+
+            file.WriteLine("");
+
+        }
+
+        /// <summary>
+        /// Write one row as SQL Insert
+        /// </summary>
+        /// <param name="file">StreamWriter</param>
+        /// <param name="dr">DataRow</param>
+        /// <param name="columns">Columns</param>
+        /// <param name="ti">TableInfo</param>
+        public static void WriteRowSql(StreamWriter file, DataRow dr, string columns, Models.TableInfo ti) 
+        {
+            if (file == null) throw new ArgumentNullException(nameof(file), "File stream writer must not be null");
+            if (dr == null) throw new ArgumentNullException(nameof(dr), "DataRow must not be null");
+            if (ti == null) throw new ArgumentNullException(nameof(ti), "Table info should not be null");
+
+            file.Write($"INSERT INTO {ti.ToString()} {columns} VALUES (");
+
+            for (int i = 0; i < dr.ItemArray.Length; i++)
+            {
+                var tname = dr.ItemArray[i].GetType().Name;
+                switch (tname)
+                {
+                    case "String":
+                    case "System.String":
+                        file.Write("'");
+                        file.Write(FixApostrophe(dr.ItemArray[i].ToString()));
+                        file.Write("'");
+                        if (i < (dr.ItemArray.Length - 1)) file.Write(", ");
+                        break;
+
+                    case "Boolean":
+                    case "System.Boolean":
+                        var fl = Boolean.Parse(dr.ItemArray[i].ToString());
+                        int val = (fl) ? 1 : 0;
+                        file.Write(val);
+                        break;
+
+                    default:
+                        file.Write(dr.ItemArray[i]);
+                        if (i < (dr.ItemArray.Length - 1)) file.Write(", ");
+                        break;
+                }
+            }
+
+            file.WriteLine(");");
+        }
+
+        /// <summary>
+        /// Fix embedded <c>Apostrophe</c> in data
+        /// </summary>
+        /// <param name="s">input text</param>
+        /// <returns>output text</returns>
+        public static string FixApostrophe(string s)
+        {
+            return !string.IsNullOrEmpty(s) ? s.Replace("'", "`") : string.Empty;
+        }
+
+        /// <summary>
+        /// Fix Quote in data
         /// </summary>
         /// <param name="s">input text</param>
         /// <returns>output text</returns>
         public static string FixQuote(string s)
         {
-            return !string.IsNullOrEmpty(s) ? s.Replace("'", "`") : string.Empty;
+            return !string.IsNullOrEmpty(s) ? s.Replace("\"", "\"\"").Trim() : string.Empty;
         }
-
     }
 }

@@ -51,9 +51,40 @@
             </summary>
             <param name="options">(options)</param>
         </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.ColumnsList(System.Data.DataTable,System.Boolean)">
+            <summary>
+            Creates a formatted column list
+            </summary>
+            <param name="dt"></param>
+            <param name="asSql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.WriteRowCsv(System.IO.StreamWriter,System.Data.DataRow)">
+            <summary>
+            Write one row as CSV
+            </summary>
+            <param name="file"></param>
+            <param name="dr"></param>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.WriteRowSql(System.IO.StreamWriter,System.Data.DataRow,System.String,Blitz.SqlExtract2SeedData.Models.TableInfo)">
+            <summary>
+            Write one row as SQL Insert
+            </summary>
+            <param name="file">StreamWriter</param>
+            <param name="dr">DataRow</param>
+            <param name="columns">Columns</param>
+            <param name="ti">TableInfo</param>
+        </member>
+        <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.FixApostrophe(System.String)">
+            <summary>
+            Fix embedded <c>Apostrophe</c> in data
+            </summary>
+            <param name="s">input text</param>
+            <returns>output text</returns>
+        </member>
         <member name="M:Blitz.SqlExtract2SeedData.Libs.SqlExtractor.FixQuote(System.String)">
             <summary>
-            Fix embeeded quote in data
+            Fix Quote in data
             </summary>
             <param name="s">input text</param>
             <returns>output text</returns>
@@ -140,6 +171,11 @@
         <member name="P:Blitz.SqlExtract2SeedData.Models.Options.Top">
             <summary>
             SQL Order By
+            </summary>
+        </member>
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.AsTsv">
+            <summary>
+            Emit TSV Instead
             </summary>
         </member>
         <member name="T:Blitz.SqlExtract2SeedData.Models.TableInfo">
