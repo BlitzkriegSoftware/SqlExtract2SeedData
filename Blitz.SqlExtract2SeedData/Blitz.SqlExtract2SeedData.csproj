@@ -5,10 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Copyright>Copyright © 2020 Blitzkrieg Software</Copyright>
     <Company>Blitzkrieg Software</Company>
-    <Description>Sql Extract To Seed Data</Description>
+    <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
     <InformationalVersion>1.1.0</InformationalVersion>
     <FileVersion>1.1.0</FileVersion>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>favicon_32x32_o7Z_icon.ico</PackageIcon>
     <PackageIconUrl />
     <RepositoryType>Git</RepositoryType>
@@ -18,15 +18,27 @@
     <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishReadyToRun>true</PublishReadyToRun>
+    <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
+    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\favicon_32x32_o7Z_icon.ico</ApplicationIcon>
+    <Version>1.1.0</Version>
+    <Authors>Stuart Williams</Authors>
+    <PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
+    <PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\code\blitz\SqlExtract2SeedData\Blitz.SqlExtract2SeedData\BlitzSqlExtract2SeedData.xml</DocumentationFile>
+    <DocumentationFile>.\Blitz.SqlExtract2SeedData\BlitzSqlExtract2SeedData.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="..\favicon_32x32_o7Z_icon.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

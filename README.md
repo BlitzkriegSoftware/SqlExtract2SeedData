@@ -1,10 +1,10 @@
-# SqlExtract2SeedData #
+# SqlExtract2SeedData
 
 An update to a little utility to extract tables in SQL Server to SQL Files for Seed Data
 
 > .NET Core 3.1 Runtime or SDK Required
 
-## Usage ##
+## Usage
 
 BlitzSqlExtract2SeedData 1.1.0
 Copyright c 2020 Blitzkrieg Software
@@ -29,13 +29,13 @@ Copyright c 2020 Blitzkrieg Software
 
 > Pro Tip: please use quotes around strings like table names, clauses, etc.
 
-## Sample Command ##
+## Sample Command
 
 ```powershell
 BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product"
 ```
 
-## Table notation ## 
+## Table notation
 
 Tables can be in the form of:
 
@@ -49,7 +49,7 @@ Tables can be in the form of:
 * `"schema.table"` => `[schema].[table]`
 * `"[schema].[table]"` => `[schema].[table]`
 
-## Where and Order By ##
+## Where and Order By
 
 You can use `where` and/or `order by` clauses, just like you would do in SQL server.
 
@@ -59,7 +59,7 @@ Please supply full valid sql clauses such as:
 BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]"
 ```
 
-## Top Modifier ##
+## Top Modifier
 
 By default, all rows are returned. If `-n` is specified a `Top N` clause is added, the rows returned are controlled by the `where` and `order by` clauses if supplied, and will be returned in "natural" order otherwise.
 
@@ -73,7 +73,7 @@ or
 BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]" -n 100
 ```
 
-## As CSV ##
+## As CSV
 
 Using the flag `-a` will create a CSV file with TAB delimiters, instead of a seed data SQL Script.
 
@@ -82,7 +82,7 @@ To open it in Excel or Open Office, use the file, open mechanism so that you wil
 * Field Delimiter (Tab \t)
 * Row Delimiter (CRLF \r\n)
 
-# About Me #
+# About Me
 
 * Stuart Williams
 
