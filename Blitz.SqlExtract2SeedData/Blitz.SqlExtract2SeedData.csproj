@@ -7,20 +7,20 @@
     <Company>Blitzkrieg Software</Company>
     <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
     <InformationalVersion>1.1.0</InformationalVersion>
-    <FileVersion>1.1.0</FileVersion>
+    <FileVersion>1.1.2</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>favicon_32x32_o7Z_icon.ico</PackageIcon>
+    <PackageIcon>BlitzkriegSoftware.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/blitzkriegsoftware/SqlExtract2SeedData</RepositoryUrl>
     <PackageTags>SqlExtract2SeedData</PackageTags>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <AssemblyVersion>1.1.2</AssemblyVersion>
     <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishReadyToRun>true</PublishReadyToRun>
     <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
-    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\favicon_32x32_o7Z_icon.ico</ApplicationIcon>
-    <Version>1.1.0</Version>
+    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\BlitzkriegSoftware.ico</ApplicationIcon>
+    <Version>1.1.2</Version>
     <Authors>Stuart Williams</Authors>
     <PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
     <PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
@@ -33,32 +33,53 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="..\BlitzkriegSoftware.ico" />
+    <None Include="..\BlitzkriegSoftware.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
-    <None Include="..\favicon_32x32_o7Z_icon.ico">
+    <Resource Include="..\BlitzkriegSoftware.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE">
+    </Resource>
+    <Resource Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
-    </None>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BlitzkriegSoftware.AdoSqlHelper" Version="1.0.0" />
-    <PackageReference Include="CommandLineParser" Version="2.7.82" />
-    <PackageReference Include="SecurityCodeScan" Version="3.5.0">
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SecurityCodeScan" Version="3.5.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
+  
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8">
-      <PrivateAssets>All</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <None Update="makeWinX64.cmd">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
 </Project>

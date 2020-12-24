@@ -1,8 +1,11 @@
-﻿using Blitz.SqlExtract2SeedData.Libs;
-using Blitz.SqlExtract2SeedData.Models;
-using CommandLine;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+
+using Blitz.SqlExtract2SeedData.Libs;
+using Blitz.SqlExtract2SeedData.Models;
+
+using CommandLine;
 
 namespace Blitz.SqlExtract2SeedData
 {
@@ -15,16 +18,24 @@ namespace Blitz.SqlExtract2SeedData
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {
-                       Libs.SqlExtractor.Extract(o);
+                       try
+                       {
+                           Libs.SqlExtractor.Extract(o);
+                       } catch (SqlException ex)
+                       {
+                           Console.Error.WriteLine($"Unable to extract data: {ex.Message}\nIs your connection string correct? Check all the parameters as well.");
+                       }
+
                    })
                    .WithNotParsed(HandleParseError);
         }
 
         static void HandleParseError(IEnumerable<Error> errs)
         {
+            Console.WriteLine("The command line parameters are incorrect:");
             foreach(var e in errs)
             {
-                Console.WriteLine($" {e.Tag}");
+                Console.WriteLine($"\t{e.Tag}");
             }
         }
 
