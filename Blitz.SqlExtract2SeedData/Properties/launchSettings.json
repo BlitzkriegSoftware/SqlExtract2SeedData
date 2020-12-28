@@ -2,7 +2,7 @@
   "profiles": {
     "Blitz.SqlExtract2SeedData": {
       "commandName": "Project",
-      "commandLineArgs": "-c \"Server=.\\sqlexpress;Database=Bicycle;Trusted_Connection=True;\" -t \"store.product\" -v -a"
+      "commandLineArgs": "-c \"Server=localhost,1466;Database=Bicycle;User Id=sa;Password=ddd20demoSQL-;\" -t \"store.product\" -v -a"
     }
   }
 }

@@ -6,7 +6,7 @@ An update to a little utility to extract tables in SQL Server to SQL Files for S
 
 ## Usage
 
-BlitzSqlExtract2SeedData 1.1.0
+BlitzSqlExtract2SeedData 1.1.2
 Copyright c 2020 Blitzkrieg Software
 
   -v, --verbose          Set output to verbose messages.
@@ -85,14 +85,9 @@ To open it in Excel or Open Office, use the file, open mechanism so that you wil
 # About Me
 
 * Stuart Williams
-
 * Cloud/DevOps Practice Lead
- 
 * Magenic Technologies Inc., Office of the CTO
- 
 * <a href="mailto:stuartw@magenic.com" target="_blank">stuartw@magenic.com</a> (e-mail)
- 
 * Blog: <a href="http://blitzkriegsoftware.net/Blog" target="_blank">http://blitzkriegsoftware.net/Blog</a> 
 * LinkedIn: <a href="http://lnkd.in/P35kVT" target="_blank">http://lnkd.in/P35kVT</a> 
-
 * YouTube: <a href="https://www.youtube.com/user/spookdejur1962/videos" target="_blank">https://www.youtube.com/user/spookdejur1962/videos</a> 

@@ -3,29 +3,38 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Copyright>Copyright © 2020 Blitzkrieg Software</Copyright>
-    <Company>Blitzkrieg Software</Company>
-    <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
-    <InformationalVersion>1.1.0</InformationalVersion>
+
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <SelfContained>true</SelfContained>
+
+    <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
+    <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
+
+    <AssemblyVersion>1.1.2</AssemblyVersion>
+    <InformationalVersion>1.1.2</InformationalVersion>
     <FileVersion>1.1.2</FileVersion>
+    <Version>1.1.2</Version>
+
+    <Title>Extract Seed Data from SQL Server</Title>
+    <Company>Blitzkrieg Software</Company>
+    <Authors>Stuart Williams;Blitzkrieg Software</Authors>
+    <Copyright>Copyright © 2020 Blitzkrieg Software</Copyright>
+    <Keyword>SQL Server;Utility;Seed Data;CLI</Keyword>
+    <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
+    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\BlitzkriegSoftware.ico</ApplicationIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>BlitzkriegSoftware.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/blitzkriegsoftware/SqlExtract2SeedData</RepositoryUrl>
-    <PackageTags>SqlExtract2SeedData</PackageTags>
-    <AssemblyVersion>1.1.2</AssemblyVersion>
-    <AssemblyName>BlitzSqlExtract2SeedData</AssemblyName>
-    <PublishTrimmed>true</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
-    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\BlitzkriegSoftware.ico</ApplicationIcon>
-    <Version>1.1.2</Version>
-    <Authors>Stuart Williams</Authors>
+    <PackageTags>SqlExtract2SeedData;SQL Server;Utility;Seed Data;CLI</PackageTags>
     <PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
     <PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -81,5 +90,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="@REM dotnet publish --self-contained true -r win-x64 -o bin\Choco\Blitz.SqlExtract2SeedData\tools -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true" />
+  </Target>
   
 </Project>
