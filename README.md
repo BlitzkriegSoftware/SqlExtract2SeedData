@@ -7,7 +7,7 @@ An update to a little utility to extract tables in SQL Server to SQL Files for S
 ## Usage
 
 BlitzSqlExtract2SeedData 1.1.2
-Copyright c 2020 Blitzkrieg Software
+Copyright (c) 2020-2021 Blitzkrieg Software
 
   -v, --verbose          Set output to verbose messages.
 
@@ -32,7 +32,7 @@ Copyright c 2020 Blitzkrieg Software
 ## Sample Command
 
 ```powershell
-BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product"
+SqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product"
 ```
 
 ## Table notation
@@ -56,7 +56,7 @@ You can use `where` and/or `order by` clauses, just like you would do in SQL ser
 Please supply full valid sql clauses such as:
 
 ```powershell
-BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]"
+SqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]"
 ```
 
 ## Top Modifier
@@ -64,13 +64,13 @@ BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connec
 By default, all rows are returned. If `-n` is specified a `Top N` clause is added, the rows returned are controlled by the `where` and `order by` clauses if supplied, and will be returned in "natural" order otherwise.
 
 ```powershell
-BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -n 20
+SqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -n 20
 ```
 
 or 
 
 ```powershell
-BlitzSqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]" -n 100
+SqlExtract2SeedData -c "Server=.\sqlexpress;Database=Bicycle;Trusted_Connection=True;" -t "store.product" -w "Where [IsActive] = 1" -o "Order By [CustomerId]" -n 100
 ```
 
 ## As CSV

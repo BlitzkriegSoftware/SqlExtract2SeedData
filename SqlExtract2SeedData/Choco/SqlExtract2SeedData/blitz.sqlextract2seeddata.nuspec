@@ -2,20 +2,20 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>blitz.sqlextract2seeddata</id>
+    <id>SqlExtract2SeedData</id>
     <version>1.1.2</version>
     <packageSourceUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData/releases/tag/v1.1.2</packageSourceUrl>
     <owners>Blitzkrieg Software/Stuart Williams</owners>
-    <title>Blitz.SqlExtract2SeedData</title>
+    <title>SqlExtract2SeedData</title>
     <authors>Blitzkrieg Software,Stuart Williams</authors>
     <projectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</projectUrl>
     <iconUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData/blob/master/BlitzkriegSoftware.png?raw=true</iconUrl>
-    <copyright>(c) 2020 Blitzkrieg Software/Stuart Williams</copyright>
+    <copyright>(c) 2020-2021 Blitzkrieg Software/Stuart Williams</copyright>
     <licenseUrl>https://raw.githubusercontent.com/BlitzkriegSoftware/SqlExtract2SeedData/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</projectSourceUrl>
     <docsUrl>https://raw.githubusercontent.com/BlitzkriegSoftware/SqlExtract2SeedData/master/README.md</docsUrl>
-    <tags>blitz.sqlextract2seeddata SqlExtract2SeedData SQL-Server-Utility Seed-Data CLI</tags>
+    <tags>SqlExtract2SeedData SQL-Server-Utility Seed-Data CLI</tags>
     <summary>SQL Server Create Seed Data Utility</summary>
     <description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</description>
     <releaseNotes>1.1.2 cleaned up version</releaseNotes>

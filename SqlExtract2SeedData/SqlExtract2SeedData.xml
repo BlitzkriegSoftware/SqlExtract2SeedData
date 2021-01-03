@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BlitzSqlExtract2SeedData</name>
+        <name>SqlExtract2SeedData</name>
     </assembly>
     <members>
         <member name="T:Blitz.SqlExtract2SeedData.Libs.AssembyInfoHelper">
@@ -173,7 +173,7 @@
             SQL Order By
             </summary>
         </member>
-        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.AsTsv">
+        <member name="P:Blitz.SqlExtract2SeedData.Models.Options.AsCsv">
             <summary>
             Emit TSV Instead
             </summary>
