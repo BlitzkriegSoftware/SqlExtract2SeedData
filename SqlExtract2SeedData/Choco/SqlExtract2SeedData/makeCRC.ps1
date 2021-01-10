@@ -3,7 +3,7 @@
 #>
 
 [string]$VFILE="C:\code\blitz\SqlExtract2SeedData\SqlExtract2SeedData\Choco\SqlExtract2SeedData\tools\VERIFICATION.txt"
-[string]$NUPKG="C:\code\blitz\SqlExtract2SeedData\SqlExtract2SeedData\bin\Debug\SqlExtract2SeedData.1.1.2.nupkg"
+[string]$NUPKG="C:\code\blitz\SqlExtract2SeedData\SqlExtract2SeedData\Choco\SqlExtract2SeedData\tools\SqlExtract2SeedData.exe"
 
 [string]$TEMP="c:\temp\t.txt"
 [string]$WORK="c:\temp\w.txt"
