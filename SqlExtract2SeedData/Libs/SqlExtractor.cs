@@ -210,7 +210,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
                     clist.Append(" ");
                 } else
                 {
-                    clist.Append("\t");
+                    clist.Append(",");
                 }
 
             }
@@ -254,7 +254,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
                         break;
                 }
 
-                if (i < (dr.ItemArray.Length - 1)) file.Write("\t");
+                if (i < (dr.ItemArray.Length - 1)) file.Write(",");
             }
 
             file.WriteLine("");
