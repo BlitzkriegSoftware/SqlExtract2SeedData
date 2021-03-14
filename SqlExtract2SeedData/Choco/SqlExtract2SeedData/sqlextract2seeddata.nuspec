@@ -4,12 +4,11 @@
   <metadata>
     <id>sqlextract2seeddata</id>
     <version>1.1.2</version>
-    <packageSourceUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData/releases/tag/v1.1.2</packageSourceUrl>
     <owners>Blitzkrieg Software/Stuart Williams</owners>
     <title>SqlExtract2SeedData</title>
     <authors>Blitzkrieg Software,Stuart Williams</authors>
     <projectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</projectUrl>
-    <iconUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData/blob/master/BlitzkriegSoftware.png?raw=true</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/BlitzkriegSoftware/SqlExtract2SeedData/744be62e64c7dbd4358b495595c035a44f14c3ac/BlitzkriegSoftware.png</iconUrl>
     <copyright>(c) 2020-2021 Blitzkrieg Software/Stuart Williams</copyright>
     <licenseUrl>https://raw.githubusercontent.com/BlitzkriegSoftware/SqlExtract2SeedData/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
