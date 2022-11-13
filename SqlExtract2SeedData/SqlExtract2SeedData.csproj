@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <TargetFramework>net6.0</TargetFramework>
+	  <LangVersion>9.0</LangVersion>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PublishSingleFile>true</PublishSingleFile>
@@ -15,18 +15,16 @@
     <AssemblyName>SqlExtract2SeedData</AssemblyName>
     <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
 
-    <AssemblyVersion>1.1.2</AssemblyVersion>
-    <InformationalVersion>1.1.2</InformationalVersion>
-    <FileVersion>1.1.2</FileVersion>
-    <Version>1.1.2</Version>
+    <InformationalVersion>6.1.2</InformationalVersion>
+    <Version>6.1.2</Version>
 
     <Title>Extract Seed Data from SQL Server</Title>
     <Company>Blitzkrieg Software</Company>
     <Authors>Stuart Williams;Blitzkrieg Software</Authors>
-    <Copyright>Copyright © 2020-2021 Blitzkrieg Software</Copyright>
+    <Copyright>Copyright © 2020-2022 Blitzkrieg Software</Copyright>
     <Keyword>SQL Server;Utility;Seed Data;CLI</Keyword>
     <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
-    <ApplicationIcon>C:\code\blitz\SqlExtract2SeedData\BlitzkriegSoftware.ico</ApplicationIcon>
+    <ApplicationIcon>.\BlitzkriegSoftware.ico</ApplicationIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>BlitzkriegSoftware.png</PackageIcon>
     <PackageIconUrl />
@@ -63,24 +61,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlitzkriegSoftware.AdoSqlHelper" Version="1.1.0" />
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="SecurityCodeScan.VS2019" Version="5.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="BlitzkriegSoftware.AdoSqlHelper6" Version="6.0.0" />
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Roslynator.Analyzers" Version="3.1.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

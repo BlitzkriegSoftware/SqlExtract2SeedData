@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Data;
-using BlitzkriegSoftware.AdoSqlHelper;
+using BlitzkriegSoftware.AdoSqlHelper6;
 
 namespace Blitz.SqlExtract2SeedData.Libs
 {

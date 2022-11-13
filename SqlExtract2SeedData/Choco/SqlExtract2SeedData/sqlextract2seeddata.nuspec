@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>sqlextract2seeddata</id>
-    <version>1.1.2</version>
+    <version>6.1.2</version>
     <owners>Blitzkrieg Software/Stuart Williams</owners>
     <title>SqlExtract2SeedData</title>
     <authors>Blitzkrieg Software,Stuart Williams</authors>
@@ -17,7 +17,10 @@
     <tags>SqlExtract2SeedData SQL-Server-Utility Seed-Data CLI</tags>
     <summary>SQL Server Create Seed Data Utility</summary>
     <description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</description>
-    <releaseNotes>1.1.2 cleaned up version</releaseNotes>
+    <releaseNotes>
+		6.1.2 .net 6
+		1.1.2 cleaned up version
+	</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
