@@ -1,89 +1,97 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-	  <LangVersion>9.0</LangVersion>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishTrimmed>true</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <SelfContained>true</SelfContained>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>9.0</LangVersion>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PublishSingleFile>true</PublishSingleFile>
+		<PublishTrimmed>true</PublishTrimmed>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+		<SelfContained>true</SelfContained>
 
-    <AssemblyName>SqlExtract2SeedData</AssemblyName>
-    <StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
+		<AssemblyName>SqlExtract2SeedData</AssemblyName>
+		<StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
 
-    <InformationalVersion>6.1.2</InformationalVersion>
-    <Version>6.1.2</Version>
+		<InformationalVersion>6.2.0</InformationalVersion>
+		<Version>6.2.0</Version>
 
-    <Title>Extract Seed Data from SQL Server</Title>
-    <Company>Blitzkrieg Software</Company>
-    <Authors>Stuart Williams;Blitzkrieg Software</Authors>
-    <Copyright>Copyright © 2020-2022 Blitzkrieg Software</Copyright>
-    <Keyword>SQL Server;Utility;Seed Data;CLI</Keyword>
-    <Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
-    <ApplicationIcon>.\BlitzkriegSoftware.ico</ApplicationIcon>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageIcon>BlitzkriegSoftware.png</PackageIcon>
-    <PackageIconUrl />
-    <RepositoryType>Git</RepositoryType>
-    <RepositoryUrl>https://github.com/blitzkriegsoftware/SqlExtract2SeedData</RepositoryUrl>
-    <PackageTags>SqlExtract2SeedData;SQL Server;Utility;Seed Data;CLI</PackageTags>
-    <PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
-    <PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-  </PropertyGroup>
+		<Title>Extract Seed Data from SQL Server</Title>
+		<Company>Blitzkrieg Software</Company>
+		<Authors>Stuart Williams;Blitzkrieg Software</Authors>
+		<Copyright>Copyright © 2020-2022 Blitzkrieg Software</Copyright>
+		<Keyword>SQL Server;Utility;Seed Data;CLI</Keyword>
+		<Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
+		<ApplicationIcon>.\BlitzkriegSoftware.ico</ApplicationIcon>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageIcon>BlitzkriegSoftware.png</PackageIcon>
+		<PackageIconUrl />
+		<RepositoryType>Git</RepositoryType>
+		<RepositoryUrl>https://github.com/blitzkriegsoftware/SqlExtract2SeedData</RepositoryUrl>
+		<PackageTags>SqlExtract2SeedData;SQL Server;Utility;Seed Data;CLI</PackageTags>
+		<PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
+		<PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackAsTool>False</PackAsTool>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>.\SqlExtract2SeedData.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>.\SqlExtract2SeedData.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="..\BlitzkriegSoftware.ico" />
-    <None Include="..\BlitzkriegSoftware.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="..\BlitzkriegSoftware.ico" />
+		<None Include="..\BlitzkriegSoftware.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-    <Resource Include="..\BlitzkriegSoftware.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </Resource>
-    <Resource Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </Resource>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+		<None Include="..\README.md">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<Resource Include="..\BlitzkriegSoftware.ico">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</Resource>
+		<Resource Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</Resource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BlitzkriegSoftware.AdoSqlHelper6" Version="6.0.0" />
-    <PackageReference Include="CommandLineParser" Version="2.9.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="BlitzkriegSoftware.AdoSqlHelper6" Version="6.0.0" />
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Update="makeWinX64.cmd">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="@REM dotnet publish --self-contained true -r win-x64 -o bin\Choco\Blitz.SqlExtract2SeedData\tools -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true" />
-  </Target>
-  
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="makeWinX64.cmd">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="@REM dotnet publish --self-contained true -r win-x64 -o bin\Choco\Blitz.SqlExtract2SeedData\tools -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true" />
+	</Target>
+
 </Project>
