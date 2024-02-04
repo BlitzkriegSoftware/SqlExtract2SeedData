@@ -5,23 +5,33 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PublishSingleFile>true</PublishSingleFile>
-		<PublishTrimmed>true</PublishTrimmed>
-		<PublishReadyToRun>true</PublishReadyToRun>
-		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-		<SelfContained>true</SelfContained>
-
 		<AssemblyName>SqlExtract2SeedData</AssemblyName>
 		<StartupObject>Blitz.SqlExtract2SeedData.Program</StartupObject>
+	</PropertyGroup>
 
-		<InformationalVersion>6.2.0</InformationalVersion>
-		<Version>6.2.0</Version>
+	<PropertyGroup>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PublishSingleFile>true</PublishSingleFile>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<SelfContained>true</SelfContained>
+		<UseAppHost>true</UseAppHost>
+		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<PackAsTool>false</PackAsTool>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
 
+	<PropertyGroup>
+		<InformationalVersion>6.2.1</InformationalVersion>
+		<Version>6.2.1</Version>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<Title>Extract Seed Data from SQL Server</Title>
 		<Company>Blitzkrieg Software</Company>
 		<Authors>Stuart Williams;Blitzkrieg Software</Authors>
-		<Copyright>Copyright © 2020-2022 Blitzkrieg Software</Copyright>
+		<Copyright>Copyright © 2020-2024 Blitzkrieg Software</Copyright>
 		<Keyword>SQL Server;Utility;Seed Data;CLI</Keyword>
 		<Description>A handy little utility to pull the data out of a table in SQL Server, and make it into a SQL Script of INSERT statements for populating a database later. Good for look-up tables, etc.</Description>
 		<ApplicationIcon>.\BlitzkriegSoftware.ico</ApplicationIcon>
@@ -33,15 +43,23 @@
 		<PackageTags>SqlExtract2SeedData;SQL Server;Utility;Seed Data;CLI</PackageTags>
 		<PackageProjectUrl>https://github.com/BlitzkriegSoftware/SqlExtract2SeedData</PackageProjectUrl>
 		<PackageReleaseNotes>Updated for the latest versions of Microsoft SQL Server</PackageReleaseNotes>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackAsTool>False</PackAsTool>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>.\SqlExtract2SeedData.xml</DocumentationFile>
+	<PropertyGroup>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>6.0-recommended</AnalysisLevel>
+		<DebugType>embedded</DebugType>
+		<WarningLevel>5</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -69,16 +87,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BlitzkriegSoftware.AdoSqlHelper6" Version="6.0.0" />
+		<PackageReference Include="BlitzkriegSoftware.AdoSqlHelper6" Version="6.2.0" />
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -89,9 +107,5 @@
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="@REM dotnet publish --self-contained true -r win-x64 -o bin\Choco\Blitz.SqlExtract2SeedData\tools -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true" />
-	</Target>
 
 </Project>

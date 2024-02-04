@@ -19,9 +19,9 @@
             if (attribute == null) return flag;
             s = attribute.ToString();
             var i = s.IndexOf('"');
-            if (i >= 0) { s = s.Substring(i + 1); flag = true; }
+            if (i >= 0) { s = s[(i + 1)..]; flag = true; }
             i = s.IndexOf('"');
-            if (i >= 0) { s = s.Substring(0, i); flag = true; }
+            if (i >= 0) { s = s[..i]; flag = true; }
             return flag;
         }
     }

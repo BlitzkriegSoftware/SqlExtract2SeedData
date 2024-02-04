@@ -13,10 +13,10 @@ namespace Blitz.SqlExtract2SeedData
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"{Program.ProgramMetadata.ToString()}");
+            Console.WriteLine($"{Program.ProgramMetadata}");
 
-            Parser.Default.ParseArguments<Options>(args)
-                   .WithParsed<Options>(o =>
+            Parser.Default.ParseArguments<CommandLineOptions>(args)
+                   .WithParsed<CommandLineOptions>(o =>
                    {
                        try
                        {
@@ -39,7 +39,7 @@ namespace Blitz.SqlExtract2SeedData
             }
         }
 
-        private static Models.BlitzAssemblyVersionMetadata _blitzassemblyversionmetadata = null;
+        private static Models.BlitzAssemblyVersionMetadata _blitzassemblyversionmetadata;
 
         /// <summary>
         /// Semantic Version, etc from Assembly Metadata

@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 using BlitzkriegSoftware.AdoSqlHelper6;
+using System.Globalization;
 
 namespace Blitz.SqlExtract2SeedData.Libs
 {
@@ -17,7 +18,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
         /// </summary>
         /// <param name="options">(options)</param>
         /// <returns>Table and Schema</returns>
-        public static Models.TableInfo ParseTableName(Models.Options options)
+        public static Models.TableInfo ParseTableName(Models.CommandLineOptions options)
         {
             var ti = new Models.TableInfo();
             if (options != null)
@@ -30,8 +31,8 @@ namespace Blitz.SqlExtract2SeedData.Libs
                 }
                 else
                 {
-                    ti.Schema = s.Substring(0, i);
-                    ti.TableName = s.Substring(i + 1);
+                    ti.Schema = s[..i];
+                    ti.TableName = s[(i + 1)..];
                 }
             }
             return ti;
@@ -42,7 +43,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
         /// </summary>
         /// <param name="options">(options)</param>
         /// <returns>True if so</returns>
-        public static bool HasIdentity(Models.Options options)
+        public static bool HasIdentity(Models.CommandLineOptions options)
         {
             if (options != null)
             {
@@ -66,7 +67,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
             if (ti != null)
             {
                 string SQL = "SELECT OBJECT_NAME(OBJECT_ID) AS TABLENAME, NAME AS COLUMNNAME, SEED_VALUE, INCREMENT_VALUE, LAST_VALUE, IS_NOT_FOR_REPLICATION FROM SYS.IDENTITY_COLUMNS WHERE OBJECT_NAME(OBJECT_ID) = '{0}' AND OBJECT_SCHEMA_NAME(object_id) = '{1}'";
-                SQL = string.Format(SQL, ti.TableName, ti.Schema);
+                SQL = string.Format(CultureInfo.InvariantCulture, SQL, ti.TableName, ti.Schema);
                 var dt = SqlHelper.ExecuteSqlWithParametersToDataTable(connectionString, SQL, null);
                 return SqlHelper.HasRows(dt);
             }
@@ -80,17 +81,16 @@ namespace Blitz.SqlExtract2SeedData.Libs
         /// The Extraction Engine
         /// </summary>
         /// <param name="options">(options)</param>
-        public static void Extract(Models.Options options)
+        public static void Extract(Models.CommandLineOptions options)
         {
             if (options == null) return;
 
             var ti = ParseTableName(options);
             var isIdentity = HasIdentity(options.ConnectionString, ti);
 
-
             if (options.Verbose)
             {
-                Console.WriteLine($"{ti.ToString()} has identity {isIdentity}");
+                Console.WriteLine($"{ti} has identity {isIdentity}");
             }
 
             var filename = $"{ti.Schema}-{ti.TableName}-SeedData.sql";
@@ -100,27 +100,27 @@ namespace Blitz.SqlExtract2SeedData.Libs
 
             var sb = new StringBuilder();
 
-            sb.Append("select ");
+            _ = sb.Append("select ");
             if (options.Top > 0)
             {
-                sb.Append($"top ({options.Top}) ");
+                _ = sb.Append($"top ({options.Top}) ");
             }
 
-            sb.Append($"* from {ti.ToString()} ");
+            _ = sb.Append($"* from {ti} ");
 
             if (!string.IsNullOrWhiteSpace(options.Where))
             {
-                sb.Append(options.Where);
-                sb.Append(" ");
+                _ = sb.Append(options.Where);
+                _ = sb.Append(' ');
             }
 
             if (!string.IsNullOrWhiteSpace(options.OrderBy))
             {
-                sb.Append(options.OrderBy);
-                sb.Append(" ");
+                _ = sb.Append(options.OrderBy);
+                _ = sb.Append(' ');
             }
 
-            sb.Append(";");
+            _ = sb.Append(';');
 
             var sql = sb.ToString();
 
@@ -144,7 +144,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
 
                 if (isIdentity)
                 {
-                    file.WriteLine($"SET IDENTITY_INSERT {ti.ToString()} ON");
+                    file.WriteLine($"SET IDENTITY_INSERT {ti} ON");
                 }
 
                 if(options.AsCsv)
@@ -165,7 +165,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
 
                 if (isIdentity)
                 {
-                    file.WriteLine($"SET IDENTITY_INSERT {ti.ToString()} OFF");
+                    file.WriteLine($"SET IDENTITY_INSERT {ti} OFF");
                 }
             }
             else
@@ -193,7 +193,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
             {
                 if(asSql)
                 {
-                    clist.Append("[");
+                    _ = clist.Append('[');
                 }
 
                 var name = dc.ColumnName;
@@ -206,13 +206,12 @@ namespace Blitz.SqlExtract2SeedData.Libs
                 
                 if(asSql)
                 {
-                    clist.Append("],"); 
-                    clist.Append(" ");
+                    _ = clist.Append("],");
+                    _ = clist.Append(' ');
                 } else
                 {
-                    clist.Append(",");
+                    _ = clist.Append(',');
                 }
-
             }
 
             var columns = clist.ToString().Trim();
@@ -274,7 +273,7 @@ namespace Blitz.SqlExtract2SeedData.Libs
             if (dr == null) throw new ArgumentNullException(nameof(dr), "DataRow must not be null");
             if (ti == null) throw new ArgumentNullException(nameof(ti), "Table info should not be null");
 
-            file.Write($"INSERT INTO {ti.ToString()} {columns} VALUES (");
+            file.Write($"INSERT INTO {ti} {columns} VALUES (");
 
             for (int i = 0; i < dr.ItemArray.Length; i++)
             {

@@ -6,7 +6,7 @@ namespace Blitz.SqlExtract2SeedData.Models
     /// Command line options
     /// <para>See: https://github.com/commandlineparser/commandline</para>
     /// </summary>
-    public class Options
+    public class CommandLineOptions
     {
         /// <summary>
         /// Verbose Output
